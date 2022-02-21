@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import TaskGroup from './TaskGroup';
+import taskDataService from '../services/taskDataService.js';
 
 const TasksList = (props) => {
+    let [taskData, setTaskData] = useState({});
+
+    useEffect(() => {
+        taskDataService.getTasks().then(response => {setTaskData(response.data)})
+    }, [])
+    
+    console.log(taskData)
+
     const priorities = props.priorities;
     const dueDates = props.dueDates;
 

@@ -19,4 +19,4 @@ class TaskDataService {
     }
 }
 
-export default new TaskDataService;
+export default new TaskDataService();
