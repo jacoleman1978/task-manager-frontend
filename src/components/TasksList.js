@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
 import TaskGroup from './TaskGroup';
 
 const TasksList = (props) => {
@@ -42,10 +41,9 @@ const TasksList = (props) => {
     
 
     return (
-        <Container>
-            TasksList
+        <div>
             {groupTasksList}
-        </Container>
+        </div>
     )
 }
 

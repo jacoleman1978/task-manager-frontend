@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 
@@ -7,25 +6,41 @@ const TaskRow = (props) => {
     const task = props.task;
     const needButtons = props.needButtons;
 
+    task.task = "Test string to remove later"
+
     let row = [];
+
+    const rowStyle = {
+        display: "flex",
+        marginTop: "5px"
+    }
+
+    const buttonGroupStyle = {
+        marginLeft: "auto"
+    }
 
     if (needButtons) {
         row = [
-            task.task,
-            <div style={{display: "flex"}}>
-                <EditButton id={task._id}/>
-                <DeleteButton id={task._id} />
+            <div key={task.id + task.priority} style={rowStyle}>
+                {task.task}
+                <div style={buttonGroupStyle}>
+                    <EditButton id={task._id}/>
+                    <DeleteButton id={task._id} />
+                </div>
             </div>
         ]
     } else {
-        row = [task.task]
+        row = [
+            <div key={task.id + task.priority}>
+                {task.task}
+            </div>
+        ]
     }
 
     return (
-        <Container>
-            TaskRow
+        <li>
             {row}
-        </Container>
+        </li>
     )
 }
 

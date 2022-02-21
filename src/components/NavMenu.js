@@ -2,15 +2,20 @@ import React from 'react';
 import {Container, Navbar, Nav} from 'react-bootstrap';
 
 const NavMenu = () => {
+    const navStyle = {
+        marginRight: "0px",
+        display: "flex"
+    }
+    
     return (
         <Navbar bg='light' expand='lg'>
             <Container>
                 <Navbar.Brand href='#home'>Task Manager</Navbar.Brand>
-                <Nav className='me-auto'>
-                    <Nav.Link href='/tasks/priorities'>By Priority</Nav.Link>
+                <div style={navStyle}>
+                    <Nav.Link href='/tasks/'>By Priority</Nav.Link>
                     <Nav.Link href='/tasks/duedates'>By Due Date</Nav.Link>
                     <Nav.Link href='/tasks/new'>New Task</Nav.Link>
-                </Nav>
+                </div>
             </Container>
         </Navbar>
     )

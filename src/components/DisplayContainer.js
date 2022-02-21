@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
 import TasksList from './TasksList';
 import SimpleTaskForm from './SimpleTaskForm';
 
@@ -8,11 +7,10 @@ const DisplayContainer = (props) => {
     const dueDates = props.dueDates;
 
     return (
-        <Container>
-            DisplayContainer
+        <div>
             <TasksList priorities={priorities} dueDates={dueDates}/>
             <SimpleTaskForm />
-        </Container>
+        </div>
     )
 }
 
