@@ -6,8 +6,6 @@ const TaskRow = (props) => {
     const task = props.task;
     const needButtons = props.needButtons;
 
-    task.task = "Test string to remove later"
-
     let row = [];
 
     const rowStyle = {

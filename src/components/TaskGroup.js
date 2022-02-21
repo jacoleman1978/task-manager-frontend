@@ -5,7 +5,6 @@ const TaskGroup = (props) => {
     const header = props.header;
     const data = props.data
     let tasksList =[];
-    console.log(data)
 
     if (data.length > 0) {
         tasksList = data.map((task) => {
