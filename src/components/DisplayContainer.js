@@ -1,5 +1,5 @@
 import React from 'react';
-import TasksList from './TasksList';
+import TaskList from './TaskList';
 import SimpleTaskForm from './SimpleTaskForm';
 
 const DisplayContainer = (props) => {
@@ -8,7 +8,7 @@ const DisplayContainer = (props) => {
 
     return (
         <div>
-            <TasksList priorities={priorities} dueDates={dueDates}/>
+            <TaskList priorities={priorities} dueDates={dueDates}/>
             <SimpleTaskForm />
         </div>
     )
