@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {TasksList, SimpleTaskForm} from './components';
+import TasksList from './TasksList';
+import SimpleTaskForm from './SimpleTaskForm';
 
 const DisplayContainer = (props) => {
     const priorities = props.priorities;
@@ -9,7 +10,7 @@ const DisplayContainer = (props) => {
     return (
         <Container>
             DisplayContainer
-            <TasksList priorities={true} dueDates={false}/>
+            <TasksList priorities={priorities} dueDates={dueDates}/>
             <SimpleTaskForm />
         </Container>
     )

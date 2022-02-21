@@ -1,12 +1,13 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {EditButton, DeleteButton} from './components';
+import EditButton from './EditButton';
+import DeleteButton from './DeleteButton';
 
 const TaskRow = (props) => {
     const task = props.task;
     const needButtons = props.needButtons;
 
-    const row = [];
+    let row = [];
 
     if (needButtons) {
         row = [

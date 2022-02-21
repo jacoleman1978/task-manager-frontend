@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {TaskGroup} from './components';
+import TaskGroup from './TaskGroup';
 
 const TasksList = (props) => {
     const priorities = props.priorities;

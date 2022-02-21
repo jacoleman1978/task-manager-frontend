@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'react-bootstrap';
-import {TaskRow} from './components';
+import TaskRow from './TaskRow';
 
 const TaskGroup = (props) => {
     const header = props.header;
