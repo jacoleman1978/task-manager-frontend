@@ -6,6 +6,10 @@ class TaskDataService {
         return axios.get('http://localhost:3333/tasks')
     }
 
+    getTask = (id) => {
+        return axios.get(`http://localhost:3333/tasks/${id}`)
+    }
+
     createTask = (data) => {
         return axios.post('http://localhost:3333/tasks/new', data)
     }
