@@ -63,7 +63,7 @@ const SimpleTaskForm = () => {
                     <Form.Group controlId="formDueDate">
                         <Form.Control 
                             type="date" 
-                            required onChange={(e) => setDueDate(new Date(e.target.value))}
+                            required onChange={(e) => setDueDate(e.target.value)}
                         />
                     </Form.Group>
                 </Col>
