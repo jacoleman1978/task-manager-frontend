@@ -22,7 +22,7 @@ const TaskRow = (props) => {
             <div key={task.id + task.priority} style={rowStyle}>
                 {task.task}
                 <div style={buttonGroupStyle}>
-                    <EditButton id={task._id}/>
+                    <EditButton id={task._id} />
                     <DeleteButton id={task._id} />
                 </div>
             </div>
