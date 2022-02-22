@@ -7,11 +7,11 @@ class TaskDataService {
     }
 
     createTask = (data) => {
-        return axios.post('http://localhost:3333/tasks/new')
+        return axios.post('http://localhost:3333/tasks/new', data)
     }
 
     updateTask = (id, data) => {
-        return axios.put(`http://localhost:3333/tasks/${id}`)
+        return axios.put(`http://localhost:3333/tasks/${id}`, data)
     }
 
     deleteTask = (id) => {
