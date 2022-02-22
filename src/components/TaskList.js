@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import TaskGroup from './TaskGroup';
-import taskDataService from '../services/taskDataService.js';
+import TaskDataService from '../services/taskDataService.js';
 
 const TasksList = (props) => {
     // Use State for data pulled from database
@@ -8,7 +8,7 @@ const TasksList = (props) => {
 
     // Retrieve data from the database then set the state
     useEffect(() => {
-        taskDataService.getTasks().then(response => {setTaskData(response.data)})
+        TaskDataService.getTasks().then(response => {setTaskData(response.data)})
     }, [])
 
     // Accessing props that were passed in
