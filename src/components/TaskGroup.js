@@ -3,7 +3,8 @@ import TaskRow from './TaskRow';
 
 const TaskGroup = (props) => {
     const header = props.header;
-    const data = props.data
+    const data = props.data;
+    const headerStyle = props.headerStyle;
     let tasksList =[];
 
     if (data.length > 0) {
@@ -20,11 +21,6 @@ const TaskGroup = (props) => {
     const groupStyle = {
         margin: "1rem 0rem"
     }
-
-    const headerStyle = {
-        backgroundColor: "red"
-    }
-
 
     return (
         <div style={groupStyle}>

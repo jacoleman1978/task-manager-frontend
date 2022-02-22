@@ -58,11 +58,15 @@ const TasksList = (props) => {
             'Low: Just a reminder for now'
         ];
 
+        // Header background color
+        let headerColors = ['red', 'orange', 'yellow', 'lightblue']
+
         // Making a TaskGroup by priority and passing in the header and appropriate data as props
         groupTasksList = priorityHeaders.map((priority, index) => {
             data = sortedTasks[index];
+            let headerStyle = {backgroundColor: headerColors[index]}
             return (
-                <TaskGroup key={index} header={priority} data={data} />
+                <TaskGroup key={index} header={priority} data={data} headerStyle={headerStyle}/>
             )
         });
     }
