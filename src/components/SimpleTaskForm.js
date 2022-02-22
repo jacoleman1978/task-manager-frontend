@@ -15,9 +15,29 @@ const SimpleTaskForm = () => {
         TaskDataService.createTask(data);
     }
 
+    const formStyle = {
+        border: "black 1px solid",
+        borderRadius: "2rem",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column"
+    }
+
+    const row1style = {
+        marginTop: "1rem",
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "99%"
+    }
+
+    const row2Style = {
+        display: "flex",
+        justifyContent: "center"
+    }
+
     return (
-        <Form onSubmit={handleSubmit}>
-            <Row>
+        <Form style={formStyle} onSubmit={handleSubmit}>
+            <Row style={row1style}>
                 <Form.Group className="mb-3" controlId="formTask">
                     <Form.Control
                         type="text"
@@ -27,7 +47,7 @@ const SimpleTaskForm = () => {
                     />
                 </Form.Group>
             </Row>
-            <Row>
+            <Row style={row2Style}>
                 <Col xs="auto">
                     <Form.Group className="mb-3" controlId="formPriority">
                         <Form.Select aria-label="Default select example" required onChange={(e) => setPriority(e.target.value)}>
@@ -39,10 +59,10 @@ const SimpleTaskForm = () => {
                         </Form.Select>
                     </Form.Group>
                 </Col>
-                <Col>
-                    <Form.Control type="date" required onChange={(e) => setDueDate(e.target.value)}/>
+                <Col xs="auto">
+                    <Form.Control type="date" required onChange={(e) => setDueDate(new Date(e.target.value))}/>
                 </Col>
-                <Col>
+                <Col xs="auto">
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
