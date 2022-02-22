@@ -23,7 +23,7 @@ const SimpleTaskForm = () => {
         flexDirection: "column"
     }
 
-    const row1style = {
+    const row1Style = {
         marginTop: "1rem",
         marginLeft: "auto",
         marginRight: "auto",
@@ -37,9 +37,10 @@ const SimpleTaskForm = () => {
 
     return (
         <Form style={formStyle} onSubmit={handleSubmit}>
-            <Row style={row1style}>
+            <Row style={row1Style}>
                 <Form.Group className="mb-3" controlId="formTask">
                     <Form.Control
+                        required
                         type="text"
                         aria-describedby="Enter task"
                         placeholder="Enter task"
@@ -50,7 +51,7 @@ const SimpleTaskForm = () => {
             <Row style={row2Style}>
                 <Col xs="auto">
                     <Form.Group className="mb-3" controlId="formPriority">
-                        <Form.Select aria-label="Default select example" required onChange={(e) => setPriority(e.target.value)}>
+                        <Form.Select aria-label="Select a priority" required onChange={(e) => setPriority(e.target.value)}>
                             <option >Select a priority</option>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
@@ -60,7 +61,12 @@ const SimpleTaskForm = () => {
                     </Form.Group>
                 </Col>
                 <Col xs="auto">
-                    <Form.Control type="date" required onChange={(e) => setDueDate(new Date(e.target.value))}/>
+                    <Form.Group controlId="formDueDate">
+                        <Form.Control 
+                            type="date" 
+                            required onChange={(e) => setDueDate(new Date(e.target.value))}
+                        />
+                    </Form.Group>
                 </Col>
                 <Col xs="auto">
                     <Button variant="primary" type="submit">
