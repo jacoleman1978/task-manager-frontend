@@ -1,24 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import TaskDataService from '../services/taskDataService';
 
 const TaskForm = (props) => {
-    const params = useParams();
-    const taskId = params.id || "";
+    const {id} = useParams();
+    const taskId = id || "";
     const newTask = props.newTask;
     const editTask = props.editTask;
 
     // Use state to keep track of info entered into the form
+    let [taskData, setTaskData] = useState([])
     let [formTask, setTask] = useState("");
     let [formPriority, setPriority] = useState("");
     let [formDueDate, setDueDate] = useState("");
     let [formDescription, setDescription] = useState("");
+    let [dateCreated, setDateCreated] = useState("");
+
+    // If editTask, then the data will be retrieved by id
+    useEffect(() => {
+        if (editTask) {
+            TaskDataService.getTask(taskId)
+                .then(response => {setTaskData(response.data)})
+        }
+    },[])
+
+    useEffect(() => {
+        if (taskData.length > 0) {
+            setTask(taskData[0].task);
+            setPriority(taskData[0].priority);
+            setDueDate(taskData[0].dueDate);
+            setDescription(taskData[0].description);
+            setDateCreated(taskData[0].dateCreated);
+        }
+    }, [taskData])
     
+
     // Uses the DataService to port the data to database when form submitted
     const handleSubmit = (e) => {
-        e.preventDefault();
-        let data = {task: formTask, priority: formPriority, dueDate: formDueDate, description: formDescription};
+        let data = {task: formTask, priority: formPriority, dueDate: formDueDate, description: formDescription, dateCreated: dateCreated};
         if (newTask) {
             TaskDataService.createTask(data);
         }
@@ -65,6 +85,7 @@ const TaskForm = (props) => {
                         aria-describedby="Enter task"
                         placeholder="Enter task"
                         onChange={(e) => setTask(e.target.value)}
+                        value={formTask}
                     />
                 </Form.Group>
             </Row>
@@ -76,13 +97,19 @@ const TaskForm = (props) => {
                         aria-describedby="Enter more details about task"
                         placeholder="(Optional) Enter details about the task" 
                         onChange={(e) => setDescription(e.target.value)}
+                        value={formDescription}
                     />
                 </Form.Group>
             </Row>
             <Row style={row3Style}>
                 <Col xs="auto">
                     <Form.Group className="mb-3" controlId="formPriority">
-                        <Form.Select aria-label="Select a priority" required onChange={(e) => setPriority(e.target.value)}>
+                        <Form.Select 
+                            aria-label="Select a priority" 
+                            required 
+                            onChange={(e) => {setPriority(e.target.value)}}
+                            value={formPriority}
+                        >
                             <option >Select a priority</option>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
@@ -95,7 +122,9 @@ const TaskForm = (props) => {
                     <Form.Group controlId="formDueDate">
                         <Form.Control 
                             type="date" 
-                            required onChange={(e) => setDueDate(new Date(e.target.value))}
+                            required 
+                            onChange={(e) => setDueDate(e.target.value)}
+                            value={formDueDate}
                         />
                     </Form.Group>
                 </Col>

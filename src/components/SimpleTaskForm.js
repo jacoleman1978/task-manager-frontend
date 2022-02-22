@@ -10,7 +10,6 @@ const SimpleTaskForm = () => {
     
     // Uses the DataService to port the data to database when form submitted
     const handleSubmit = (e) => {
-        e.preventDefault();
         let data = {task: formTask, priority: formPriority, dueDate: formDueDate};
         TaskDataService.createTask(data);
     }
