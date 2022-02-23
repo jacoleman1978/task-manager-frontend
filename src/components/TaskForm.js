@@ -3,9 +3,13 @@ import {useParams} from 'react-router-dom';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import TaskDataService from '../services/taskDataService';
 
+// Called from 'NewTask' NavMenu option and from EditButton
 const TaskForm = (props) => {
+    // Retrieve the taskId from the url
     const {id} = useParams();
     const taskId = id || "";
+
+    // Props
     const newTask = props.newTask;
     const editTask = props.editTask;
 
@@ -17,14 +21,15 @@ const TaskForm = (props) => {
     let [formDescription, setDescription] = useState("");
     let [dateCreated, setDateCreated] = useState("");
 
-    // If editTask, then the data will be retrieved by id
-    useEffect(() => {
+    // If editTask, then the data will be retrieved from the database by id
+    useEffect((editTask, taskId) => {
         if (editTask) {
             TaskDataService.getTask(taskId)
                 .then(response => {setTaskData(response.data)})
         }
     },[])
 
+    // When data is retrieved for an edit task, set the state for each of the keys
     useEffect(() => {
         if (taskData.length > 0) {
             setTask(taskData[0].task);
@@ -36,7 +41,7 @@ const TaskForm = (props) => {
     }, [taskData])
     
 
-    // Uses the DataService to port the data to database when form submitted
+    // Uses the DataService to push the data to database when form submitted: post for newTask == true and put for editTask == true.
     const handleSubmit = (e) => {
         let data = {task: formTask, priority: formPriority, dueDate: formDueDate, description: formDescription, dateCreated: dateCreated};
         if (newTask) {
@@ -47,6 +52,7 @@ const TaskForm = (props) => {
         }
     }
 
+    // Style for the form
     const formStyle = {
         border: "black 1px solid",
         borderRadius: "2rem",
@@ -56,6 +62,7 @@ const TaskForm = (props) => {
         marginTop: "1rem"
     }
 
+    // Style for the first row: 'Enter task'
     const row1Style = {
         marginTop: "1rem",
         marginLeft: "auto",
@@ -63,18 +70,21 @@ const TaskForm = (props) => {
         width: "99%"
     }
 
+    // Style for the second row: 'Detailed description'
     const row2Style = {
-        marginBottom: "1rem",
         marginLeft: "auto",
         marginRight: "auto",
         width: "99%"
     }
 
+    // Style for the third row: 'Priority', 'DueDate', 'Submit'
     const row3Style = {
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+
     }
 
+    // onChange used to setState for that variable/key
     return (
         <Form style={formStyle} onSubmit={handleSubmit}>
             <Row style={row1Style}>

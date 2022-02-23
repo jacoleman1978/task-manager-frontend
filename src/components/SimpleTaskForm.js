@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import TaskDataService from '../services/taskDataService';
 
+// Called from DisplayContainer.js
 const SimpleTaskForm = () => {
     // Use state to keep track of info entered into the form
     let [formTask, setTask] = useState("");
@@ -14,6 +15,7 @@ const SimpleTaskForm = () => {
         TaskDataService.createTask(data);
     }
 
+    // Style for entire Form
     const formStyle = {
         border: "black 1px solid",
         borderRadius: "2rem",
@@ -22,6 +24,7 @@ const SimpleTaskForm = () => {
         flexDirection: "column"
     }
 
+    // Style for Row 1 of the Form
     const row1Style = {
         marginTop: "1rem",
         marginLeft: "auto",
@@ -29,11 +32,13 @@ const SimpleTaskForm = () => {
         width: "99%"
     }
 
+    // Style for Row 2 of the Form
     const row2Style = {
         display: "flex",
         justifyContent: "center"
     }
 
+    // Form to add a new Task displayed on the Sorted pages. Only required fields present.
     return (
         <Form style={formStyle} onSubmit={handleSubmit}>
             <Row style={row1Style}>
