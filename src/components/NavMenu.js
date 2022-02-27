@@ -1,10 +1,7 @@
 import React from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
 import {Navbar, Nav} from 'react-bootstrap';
 
 const NavMenu = () => {
-    const {isAuthenticated} = useAuth0();
-    
     const divStyle = {
         backgroundColor: "lightgreen",
         display: "flex",
@@ -33,17 +30,16 @@ const NavMenu = () => {
     }
     
     return (
-        isAuthenticated && 
-            (<Navbar bg='light' expand='lg' >
-                <div style={divStyle}>
-                    <Navbar.Brand href='/'>Task Manager</Navbar.Brand>
-                    <Nav fill style={navStyle} variant="pills">
-                        <Nav.Link style={navLinkStyle} href='/tasks'>By Priority</Nav.Link>
-                        <Nav.Link style={navLinkStyle} href='/tasks/duedates'>By Due Date</Nav.Link>
-                        <Nav.Link style={navLinkStyle} href='/tasks/new'>New Task</Nav.Link>
-                    </Nav>
-                </div>
-            </Navbar>)
+        <Navbar bg='light' expand='lg' >
+            <div style={divStyle}>
+                <Navbar.Brand href='/'>Task Manager</Navbar.Brand>
+                <Nav fill style={navStyle} variant="pills">
+                    <Nav.Link style={navLinkStyle} href='/tasks'>By Priority</Nav.Link>
+                    <Nav.Link style={navLinkStyle} href='/tasks/duedates'>By Due Date</Nav.Link>
+                    <Nav.Link style={navLinkStyle} href='/tasks/new'>New Task</Nav.Link>
+                </Nav>
+            </div>
+        </Navbar>
     )
 }
 
