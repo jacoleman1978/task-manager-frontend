@@ -13,8 +13,7 @@ const TasksList = (props) => {
     }, [])
 
     // Accessing props that were passed in
-    const priorities = props.priorities;
-    const dueDates = props.dueDates;
+    const {priorities, dueDates} = props;
 
     // Test data
     let data = [{_id: "", task: "", priority: "", dueDate: "", description: ""}];

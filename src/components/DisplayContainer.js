@@ -5,8 +5,7 @@ import SimpleTaskForm from './SimpleTaskForm';
 // Called from App.js
 const DisplayContainer = (props) => {
     // Props
-    const priorities = props.priorities;
-    const dueDates = props.dueDates;
+    const {priorities, dueDates} = props;
 
     // Display the TaskList React Component with SimpleTaskForm underneath
     return (

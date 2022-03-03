@@ -6,8 +6,7 @@ import DeleteButton from './DeleteButton';
 // Called from TaskGroup
 const TaskRow = (props) => {
     // Props
-    const task = props.task;
-    const needButtons = props.needButtons;
+    const {task, needButtons} = props;
 
     // Style for each row
     const rowStyle = {

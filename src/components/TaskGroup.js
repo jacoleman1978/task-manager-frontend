@@ -4,9 +4,7 @@ import TaskRow from './TaskRow';
 // Called from TaskList
 const TaskGroup = (props) => {
     // Props
-    const header = props.header;
-    const data = props.data;
-    const headerStyle = props.headerStyle;
+    const {header, data, headerStyle} = props;
 
     // tasksList will be filled in the conditional below
     let tasksList =[];

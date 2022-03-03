@@ -8,7 +8,7 @@ function EditButton(props) {
     const navigate = useNavigate();
 
     // Props
-    let id = props.id;
+    const {id} = props;
 
     // Handle click function redirects to the TaskForm, including the taskId as a param in the url
     const handleClick = (e) => {

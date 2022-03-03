@@ -5,7 +5,7 @@ import TaskDataService from '../services/taskDataService';
 // Called from TaskRow
 function DeleteButton(props) {
     // Props
-    let id = props.id;
+    const {id} = props;
 
     // Delete button style to provide spacing
     let delBtnStyle = {
