@@ -2,13 +2,9 @@ import React, {useState, useEffect} from 'react';
 import TaskGroup from './TaskGroup';
 import {DeleteTaskContext} from '../context/DeleteTaskContext';
 import TaskDataService from '../services/taskDataService.js';
-import { useNavigate } from 'react-router-dom';
 
 // Called from DisplayContainer
-const TasksList = (props) => {
-    // navigate allows redirection to another page when the button is clicked
-    const navigate = useNavigate();  
-    
+const TasksList = (props) => {   
     // Use State for data pulled from database
     let [taskData, setTaskData] = useState([]);
 
@@ -16,7 +12,7 @@ const TasksList = (props) => {
     let [delFlag, toggleDelFlag] = useState(false)
 
     // Handle clicking delete button, causing refresh of tasks
-    const handleDelClick = (id, delFlag, sort) => {
+    const handleDelClick = (id, delFlag) => {
         try {
             TaskDataService.deleteTask(id);
             toggleDelFlag(!delFlag)
@@ -170,7 +166,6 @@ const TasksList = (props) => {
                 delFlag: delFlag,
                 handleDelClick: handleDelClick
             }}
-            
         >
             {groupTasksList}
         </DeleteTaskContext.Provider>

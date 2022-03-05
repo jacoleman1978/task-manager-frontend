@@ -5,7 +5,7 @@ import {DeleteTaskContext} from '../context/DeleteTaskContext';
 // Called from TaskRow
 function DeleteButton(props) {
     // Props
-    const {id, sort} = props;
+    const {id} = props;
 
     // Use DeleteTaskContext
     const {delFlag, handleDelClick} = useContext(DeleteTaskContext);
@@ -21,7 +21,7 @@ function DeleteButton(props) {
             <Button 
                 style={delBtnStyle} 
                 className="btn-danger"
-                onClick={() => {handleDelClick(id, delFlag, sort)}}
+                onClick={() => {handleDelClick(id, delFlag)}}
             >
                 <i className="fas fa-trash-alt"></i>
             </Button>

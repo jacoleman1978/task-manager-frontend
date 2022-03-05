@@ -32,7 +32,7 @@ const TaskGroup = (props) => {
                     <TaskRow  task={task} needButtons={true} />
                     <div style={buttonGroupStyle}>
                         <EditButton id={task._id} sort={sort}/>
-                        <DeleteButton id={task._id} sort={sort}/>
+                        <DeleteButton id={task._id}/>
                     </div>
                 </li>
             )
