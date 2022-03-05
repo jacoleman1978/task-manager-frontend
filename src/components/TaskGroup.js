@@ -28,18 +28,24 @@ const TaskGroup = (props) => {
     if (data.length > 0) {
         tasksList = data.map((task) => {
             return (
-                <li key={task._id} style={rowStyle}>
-                    <TaskRow  task={task} needButtons={true} />
-                    <div style={buttonGroupStyle}>
-                        <EditButton id={task._id} sort={sort}/>
-                        <DeleteButton id={task._id}/>
+                <li key={task._id} >
+                    <div style={rowStyle}>
+                        <TaskRow  task={task} needButtons={true} />
+                        <div style={buttonGroupStyle}>
+                            <EditButton id={task._id} sort={sort}/>
+                            <DeleteButton id={task._id}/>
+                        </div>
                     </div>
                 </li>
             )
         });
     } else {
         const task = {_id: "", task: "No tasks found", priority: "", dueDate: "", description: ""};
-        tasksList = [<TaskRow key={0} task={task} needButtons={false}/>];
+        tasksList = [
+            <li>
+                <TaskRow key={0} task={task} needButtons={false}/>
+            </li>
+        ];
     }
 
     // Style for the GroupTask

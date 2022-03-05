@@ -1,12 +1,10 @@
 import React from 'react';
-import {useAuth0} from '@auth0/auth0-react';
 
 function LogoutButton() {
-    // Hooks needed from useAuth0
-    const {logout} = useAuth0();
+
 
     return (
-        <button onClick={() => logout()}>
+        <button onClick={() => {}}>
             Log Out
         </button>
     )
