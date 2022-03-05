@@ -2,16 +2,19 @@ import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {Form, Button, Row, Col} from 'react-bootstrap';
 import TaskDataService from '../services/taskDataService';
+import { useNavigate } from 'react-router-dom';
 
 // Called from 'NewTask' NavMenu option and from EditButton
 const TaskForm = (props) => {
+    // navigate allows redirection to another page when the button is clicked
+    const navigate = useNavigate(); 
+    
     // Retrieve the taskId from the url
-    const {id} = useParams();
+    const {id, sort} = useParams();
     const taskId = id || "";
 
     // Props
-    const newTask = props.newTask;
-    const editTask = props.editTask;
+    const {newTask, editTask} = props;
 
     // Use state to keep track of info entered into the form
     let [taskData, setTaskData] = useState([])
@@ -22,13 +25,13 @@ const TaskForm = (props) => {
     let [dateCreated, setDateCreated] = useState("");
 
     // If editTask, then the data will be retrieved from the database by id
-    useEffect((editTask, taskId) => {
+    useEffect(() => {
         if (editTask) {
             TaskDataService.getTask(taskId)
                 .then(response => {setTaskData(response.data)})
         }
-    },[])
-
+    },[editTask, taskId])
+    
     // When data is retrieved for an edit task, set the state for each of the keys
     useEffect(() => {
         if (taskData.length > 0) {
@@ -49,6 +52,7 @@ const TaskForm = (props) => {
         }
         if (editTask) {
             TaskDataService.updateTask(taskId, data);
+            navigate(`/tasks/${sort}`)
         }
     }
 

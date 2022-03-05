@@ -34,7 +34,7 @@ const NavMenu = () => {
             <div style={divStyle}>
                 <Navbar.Brand href='/'>Task Manager</Navbar.Brand>
                 <Nav fill style={navStyle} variant="pills">
-                    <Nav.Link style={navLinkStyle} href='/tasks'>By Priority</Nav.Link>
+                    <Nav.Link style={navLinkStyle} href='/tasks/priorities'>By Priority</Nav.Link>
                     <Nav.Link style={navLinkStyle} href='/tasks/duedates'>By Due Date</Nav.Link>
                     <Nav.Link style={navLinkStyle} href='/tasks/new'>New Task</Nav.Link>
                 </Nav>

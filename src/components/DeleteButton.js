@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button} from 'react-bootstrap';
-import TaskDataService from '../services/taskDataService';
+import {DeleteTaskContext} from '../context/DeleteTaskContext';
 
 // Called from TaskRow
 function DeleteButton(props) {
     // Props
-    const {id} = props;
+    const {id, sort} = props;
+
+    // Use DeleteTaskContext
+    const {delFlag, handleDelClick} = useContext(DeleteTaskContext);
 
     // Delete button style to provide spacing
     let delBtnStyle = {
@@ -13,17 +16,12 @@ function DeleteButton(props) {
         marginLeft: "0.25rem"
     }
 
-    // handleClick function to send a delete request to the database to delete a task with the passed in id
-    const handleClick = (e) => {
-        TaskDataService.deleteTask(id);
-    }
-
     // Button icon is from FontAwesome
     return (
             <Button 
                 style={delBtnStyle} 
                 className="btn-danger"
-                onClick={handleClick}
+                onClick={() => {handleDelClick(id, delFlag, sort)}}
             >
                 <i className="fas fa-trash-alt"></i>
             </Button>

@@ -8,11 +8,11 @@ function EditButton(props) {
     const navigate = useNavigate();
 
     // Props
-    const {id} = props;
+    const {id, sort} = props;
 
     // Handle click function redirects to the TaskForm, including the taskId as a param in the url
     const handleClick = (e) => {
-        navigate(id);
+        navigate(`/tasks/${id}/${sort}`);
     }
 
     // Style for the button to include space between the buttons

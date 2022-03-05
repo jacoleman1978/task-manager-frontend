@@ -1,16 +1,35 @@
 import React, {useState, useEffect} from 'react';
 import TaskGroup from './TaskGroup';
+import {DeleteTaskContext} from '../context/DeleteTaskContext';
 import TaskDataService from '../services/taskDataService.js';
+import { useNavigate } from 'react-router-dom';
 
 // Called from DisplayContainer
 const TasksList = (props) => {
+    // navigate allows redirection to another page when the button is clicked
+    const navigate = useNavigate();  
+    
     // Use State for data pulled from database
-    let [taskData, setTaskData] = useState({});
+    let [taskData, setTaskData] = useState([]);
+
+    // Use State for refresh after deleting task
+    let [delFlag, toggleDelFlag] = useState(false)
+
+    // Handle clicking delete button, causing refresh of tasks
+    const handleDelClick = (id, delFlag, sort) => {
+        try {
+            TaskDataService.deleteTask(id);
+            toggleDelFlag(!delFlag)
+        }
+        catch(error) {
+            console.error(`Error while attempting to delete the task, ${error}`);
+        }
+    }
 
     // Retrieve data from the database then set the state
     useEffect(() => {
         TaskDataService.getTasks().then(response => {setTaskData(response.data)})
-    }, [])
+    }, [delFlag])
 
     // Accessing props that were passed in
     const {priorities, dueDates} = props;
@@ -66,7 +85,7 @@ const TasksList = (props) => {
             data = sortedTasks[index];
             let headerStyle = {backgroundColor: headerColors[index], borderRadius: "0.5rem"}
             return (
-                <TaskGroup key={index} header={priority} data={data} headerStyle={headerStyle}/>
+                <TaskGroup key={index} header={priority} data={data} headerStyle={headerStyle} sort={"priorities"}/>
             )
         });
     }
@@ -140,16 +159,21 @@ const TasksList = (props) => {
             data = sortedTasks[index];
             let headerStyle = {backgroundColor: headerColors[index], borderRadius: "0.5rem"}
             return (
-                <TaskGroup key={index} header={dueDate} data={data} headerStyle={headerStyle}/>
+                <TaskGroup key={index} header={dueDate} data={data} headerStyle={headerStyle} sort={"dueDates"}/>
             )
         });
     }
 
     // Passes in the TaskGroup React components for whichever sorting method was chosen.
     return (
-        <div>
+        <DeleteTaskContext.Provider value={{
+                delFlag: delFlag,
+                handleDelClick: handleDelClick
+            }}
+            
+        >
             {groupTasksList}
-        </div>
+        </DeleteTaskContext.Provider>
     )
 }
 
